@@ -43,6 +43,20 @@ jobs:
               docker-compose -H ${{ secrets.HOST_SERVER }} down
               docker-compose -H ${{ secrets.HOST_SERVER }} pull
               docker-compose -H ${{ secrets.HOST_SERVER }} up -d
-   
+      -
+        name: Build and deploy
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: tytnpps/234-deploy-frontend:latest
+      -
+        name: prepare the docker-compose-prod run
+        run: |
+              cp docker-compose-prod.yml 234-deploylab-frontend/docker-compose-prod.yml
+              cd 234-deploylab-frontend
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod down
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod pull
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod up -d
       
         
