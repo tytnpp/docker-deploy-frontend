@@ -3,6 +3,7 @@ name: Deploy frontend application
   push:
     branches:
       - master
+      - prod
 
 jobs:
   docker:
