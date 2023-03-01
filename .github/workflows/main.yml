@@ -34,9 +34,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: tytnpps/234-deploy-frontend:latest
+          tags: tytnpps/234-deploylab-frontend:latest
       -
-        name: prepare the docker-compose run
+        name: Prepare docker-compose run
         run: |
               mkdir 234-deploylab-frontend
               cp docker-compose.yml 234-deploylab-frontend/docker-compose.yml
@@ -45,12 +45,10 @@ jobs:
               docker-compose -H ${{ secrets.HOST_SERVER }} pull
               docker-compose -H ${{ secrets.HOST_SERVER }} up -d
       -
-        name: prepare the docker-compose-prod run
+        name: Prepare docker-compose-prod run
         run: |
               cp docker-compose-prod.yml 234-deploylab-frontend/docker-compose-prod.yml
               cd 234-deploylab-frontend
-              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod down
-              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod pull
-              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod up -d
-      
-        
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod.yml down
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod.yml pull
+              docker-compose -H ${{ secrets.HOST_SERVER }} -f docker-compose-prod.yml up -d
