@@ -49,7 +49,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ridertus/234-deploylab-frontend:latest
+          tags: tytnpps/234-deploylab-frontend:latest
+      -
+        name: prepare docker-compose run
         run: |
               mkdir 234-deploylab-frontend
               cp docker-compose.yml 234-deploylab-frontend/docker-compose.yml
