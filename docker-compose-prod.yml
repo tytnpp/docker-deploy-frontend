@@ -1,6 +1,0 @@
-version: '3.3'
-services:
-  frontend:
-    image: tytnpps/234-deploy-frontend:latest
-    ports:
-      - "9999:80"
